@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Binary Search Tree</title>
+    <script>
+      /* let adjList =  {
+    'a':['b','c'],
+    'b':['a','c','d'],
+    'c':['a','b'],
+    'd':['b'],
+   }
+   console.log(adjList)*/
+
+      class Node {
+        constructor(val) {
+          this.value = val;
+          this.left = null;
+          this.right = null;
+        }
+      }
+
+      class bTree {
+        constructor() {
+          this.node = null;
+        }
+
+        isTreeEmpty() {
+          if (this.node === null) {
+            return true;
+          }
+        }
+        makeTree(val) {
+          let newNode = new Node(val);
+          if (this.node === null) {
+            this.node = newNode;
+          } else {
+            this.insertNode(this.node, newNode);
+          }
+        }
+        insertNode(node, val) {
+          if (val.value < node.value) {
+            if (node.left === null) {
+              node.left = val;
+            } else {
+              this.insertNode(node.left, val);
+            }
+          } else {
+            if (node.right === null) {
+              node.right = val;
+            } else {
+              this.insertNode(node.right, val);
+            }
+          }
+        }
+        serchNode(root, val) {
+          if (root === null) {
+            return false;
+          } else if (root.value === val) {
+            return true;
+          } else if (root.value < val) {
+            return this.serchNode(root.right, val);
+          } else {
+            return this.serchNode(root.left, val);
+          }
+        }
+        min(root) {
+          if (root.left === null) {
+            return root.value;
+          }
+          else{
+            return this.min(root.left)
+          }
+        }
+      }
+
+      let bstree = new bTree();
+      bstree.makeTree(6);
+      bstree.makeTree(2);
+      bstree.makeTree(7);
+      console.log(bstree.serchNode(bstree.node, 22));
+      console.log(bstree.min(bstree.node));
+      console.log(bstree);
+    </script>
+  </head>
+  <body>
+    <h1>Binary Search Tree</h1>
+  </body>
+</html>
